@@ -13,4 +13,14 @@ export default defineConfig({
       "@": path.resolve(__dirname, "src"), // Set import alias for "src" folder
     },
   }, 
+  server: {  // Move "server" config here (not inside resolve)
+    proxy: {
+      "/api": {
+        target: "http://localhost:8080",
+        changeOrigin: true,
+        secure: false,
+        credentials: true, // Allow cookies
+      },
+    },
+  }
 })
